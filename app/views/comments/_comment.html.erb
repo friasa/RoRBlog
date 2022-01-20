@@ -1,19 +1,26 @@
-<% unless comment.archived? %>
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
+<%# unless comment.archived? %>
+<div id=<%= dom_id(comment) %>>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
 
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.content %>
+  </p>
 
-<p>
-  <%= link_to "Destroy Comment", [ comment.post, comment ], data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure you'd like to delete #{comment.commenter}'s comment?"
-  } %>
-</p>
+  <p>
+    Posted: <%= time_tag comment.created_at, 'data-local': 'time-ago' %>
+  </p>
 
-<% end %>
+<!--  TODO: doesn't work with mailer-->
+<!--  <p>-->
+<!--#    <= link_to "Destroy Comment", [ comment.post, comment ], data: {-->
+<!--#       turbo_method: :delete,-->
+<!--#       turbo_confirm: "Are you sure you'd like to delete #{comment.commenter}'s comment?"-->
+<!--#    } >-->
+<!--  </p>-->
+</div>
+<%# end %>
+<!-- TODO: add status and archived-->

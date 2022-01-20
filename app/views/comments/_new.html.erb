@@ -1,0 +1,26 @@
+<%= form_with model: [ post, Comment.new ] do |form| %>
+<div>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+    <% post.errors.full_messages_for(:commenter).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content, size: "20x5"%>
+    <% post.errors.full_messages_for(:content).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+  </p>
+<!--  TODO: Add status-->
+<!--  <div>-->
+<!--    <%#= form.label :status %><br>-->
+    <%#= form.select :status, %w[public private archived], selected: 'public' %>
+<!--  </div>-->
+  <p>
+    <%= form.submit %>
+  </p>
+</div>
+<% end %>
