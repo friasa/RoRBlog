@@ -1,0 +1,15 @@
+<div id="<%= dom_id post %>">
+<h1><%= post.title %></h1>
+
+  <i>
+    <strong>Posted: </strong><%= time_tag post.created_at, 'data-local': 'time-ago' %> -
+    <strong>Comments: </strong><%= pluralize post.comments.count, 'comment' %> -
+    <strong>Status: </strong><%= post.status %>
+  </i>
+
+  <p>
+    <h4>Content:</h4>
+    <strong><%= post.content %></strong>
+  </p>
+
+</div>

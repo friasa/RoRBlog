@@ -1,15 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
 <h1>Posts</h1>
 
-Our blog has <%= Post.public_count %> articles and counting! Keep posting!
-
-<ul>
-  <% @posts.each do |p| %>
-    <% unless p.archived? %>
-      <li>
-        <%= link_to p.title, p %>
-      </li>
-    <% end %>
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
   <% end %>
-</ul>
+</div>
 
-<%= link_to "New Post", new_post_path %>
+<%= link_to "New post", new_post_path %>

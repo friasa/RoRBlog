@@ -1,22 +1,16 @@
 class CommentsController < ApplicationController
-
-  http_basic_authenticate_with name: 'dhh', password: 'secret', only: :destroy
+  before_action :set_post
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    redirect_to post_path(@post)
+    @comment = @post.comments.create! params.required(:comment).permit(:commenter, :content)
+    CommentsMailer.submitted(@comment).deliver_later
+    redirect_to @post
 
-    # TODO: figure out how to do validation
-    # if @comment.save
-    #   redirect_to post_path(@post)
-    # else
-    #   render 'posts/show', status: :unprocessable_entity
-    # end
+    # TODO: validation
   end
 
+  # TODO: why does destroy not broadcast?
   def destroy
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
 
@@ -25,8 +19,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def comment_params
-    params.require(:comment).permit(:commenter, :body, :status)
+  def set_post
+    @post = Post.find(params[:post_id])
   end
-
 end
