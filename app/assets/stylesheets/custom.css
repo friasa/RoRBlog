@@ -1,0 +1,53 @@
+/* Custom Styling */
+
+/* Fonts */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(240, 240, 240, 0.42);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    margin: 25px 0;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+}
+
+.container {
+    border: 8px;
+    padding: 10px;
+    background-color: rgba(215, 215, 215, 0.6);
+    border-radius: 15px;
+}
+
+.item {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 2px;
+}
+
+.link-btn a {
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    background: rgba(215, 215, 215, 0);
+    font-size: 1rem;
+    color: var(--accent);
+    padding: 0.7rem 0.9rem;
+    margin: 0.5rem 0;
+    text-decoration: none;
+}
+
+.link-btn a:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    padding: 30px;
+    text-align: center;
+    color: black;
+    font-size: 60px;
+}

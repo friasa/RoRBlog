@@ -1,0 +1,14 @@
+<div id="posts">
+  <% posts.each do |post| %>
+    <div id="<%= dom_id post %>" class="card">
+      <div class="container">
+        <%= render post %>
+        <div class="item">
+          <p class="link-btn">
+            <%= link_to "Show this post", post %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
