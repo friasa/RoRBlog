@@ -5,7 +5,7 @@
     <i>
       <strong>Posted: </strong><%= time_tag post.created_at, 'data-local': 'time-ago' %> -
       <strong>Comments: </strong><%= pluralize post.comments.count, 'comment' %> -
-      <strong>Status: </strong><%= post.status %>
+      <strong>Status: </strong><%= post.status.titlecase %>
     </i>
 </div>
 

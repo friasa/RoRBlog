@@ -24,6 +24,13 @@ body {
     border-radius: 15px;
 }
 
+.container.private {
+    border: 8px;
+    padding: 20px 35px;
+    background-color: rgba(127, 152, 157, 0.55);
+    border-radius: 15px;
+}
+
 .item {
     width: -moz-fit-content;
     width: fit-content;

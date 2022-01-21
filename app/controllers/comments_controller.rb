@@ -5,11 +5,8 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create! params.required(:comment).permit(:commenter, :content)
     CommentsMailer.submitted(@comment).deliver_later
     redirect_to @post
-
-    # TODO: validation
   end
 
-  # TODO: why does destroy not broadcast?
   def destroy
     @comment = @post.comments.find(params[:id])
     @comment.destroy

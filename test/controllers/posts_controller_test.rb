@@ -15,7 +15,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # TODO test fails
   test "should create post" do
     assert_difference("Post.count") do
       post posts_url, params: { post: { content: @post.content, status: @post.status, title: @post.title } }
@@ -34,7 +33,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # TODO test fails
   test "should update post" do
     patch post_url(@post), params: { post: { content: @post.content, status: @post.status, title: @post.title } }
     assert_redirected_to post_url(@post)
