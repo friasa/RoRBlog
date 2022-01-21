@@ -1,14 +1,15 @@
+<%= turbo_stream_from 'posts' %>
+
 <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
+<h1 class="header">Alex's Blog</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
+<p class="link-btn">
+  <%= link_to "+ Create new post", new_post_path%>
+</p>
 
-<%= link_to "New post", new_post_path %>
+<%= render "posts/posts", posts: @posts %>
+
+<p class="link-btn">
+  <%= link_to "+ Create new post", new_post_path%>
+</p>

@@ -6,4 +6,8 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { minimum: 5 }
 
   has_many :comments, dependent: :destroy
+
+  after_create_commit { broadcast_append_to('posts') }
+  after_destroy_commit { broadcast_remove_to('posts') }
+  after_update_commit { broadcast_update_to('posts') }
 end
