@@ -1,26 +1,25 @@
-<%# unless comment.archived? %>
-<div id=<%= dom_id(comment) %>>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
+<div class="card">
+  <div class="container">
+    <div class="item" id=<%= dom_id(comment) %>>
+      <p class="item">
+        <strong>Commenter:</strong> <%= comment.commenter %>
+      </p>
+      <p class="item">
+        <strong>Comment:</strong> <%= comment.content %>
+      </p>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.content %>
-  </p>
+      <p class="item">
+        <strong>Posted:</strong> <em><%= time_tag comment.created_at, 'data-local': 'time-ago' %></em>
+      </p>
 
-  <p>
-    Posted: <%= time_tag comment.created_at, 'data-local': 'time-ago' %>
-  </p>
-
-<!--  TODO: doesn't work with mailer-->
-<!--  <p>-->
-<!--#    <= link_to "Destroy Comment", [ comment.post, comment ], data: {-->
-<!--#       turbo_method: :delete,-->
-<!--#       turbo_confirm: "Are you sure you'd like to delete #{comment.commenter}'s comment?"-->
-<!--#    } >-->
-<!--  </p>-->
+    <!--  TODO: doesn't work with mailer-->
+    <!--  <p>-->
+    <!--#    <= link_to "Destroy Comment", [ comment.post, comment ], data: {-->
+    <!--#       turbo_method: :delete,-->
+    <!--#       turbo_confirm: "Are you sure you'd like to delete #{comment.commenter}'s comment?"-->
+    <!--#    } >-->
+    <!--  </p>-->
+    </div>
+  </div>
 </div>
-<%# end %>
 <!-- TODO: add status and archived-->
