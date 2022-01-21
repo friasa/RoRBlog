@@ -2,25 +2,7 @@
   <% posts.each do |post| %>
     <% unless post.archived? %>
       <div id="<%= dom_id post %>" class="card">
-        <% if post.private? %>
-          <div class="container private">
-            <%= render post %>
-            <div class="item">
-              <p class="link-btn">
-                <%= link_to "Show this post", post %>
-              </p>
-            </div>
-          </div>
-        <% else %>
-          <div class="container">
-            <%= render post %>
-            <div class="item">
-              <p class="link-btn">
-                <%= link_to "Show this post", post %>
-              </p>
-            </div>
-          </div>
-        <% end %>
+        <%= render post, { :show => true } %>
       </div>
     <% end %>
   <% end %>

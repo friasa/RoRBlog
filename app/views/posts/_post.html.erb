@@ -1,19 +1,32 @@
-<div class="item">
-  <h2><%= post.title %></h2>
-</div>
-<div class="item">
-    <i>
-      <strong>Posted: </strong><%= time_tag post.created_at, 'data-local': 'time-ago' %> -
-      <strong>Comments: </strong><%= pluralize post.comments.count, 'comment' %> -
-      <strong>Status: </strong><%= post.status.titlecase %>
-    </i>
-</div>
+<% if show %>
+<div class="<%= post.private? ? 'container private' : 'container' %>">
+<% else %>
+<div>
+<% end %>
+  <div class="item">
+    <h2><%= post.title %></h2>
+  </div>
+  <div class="item">
+      <i>
+        <strong>Posted: </strong><%= time_tag post.created_at, 'data-local': 'time-ago' %> -
+        <strong>Comments: </strong><%= pluralize post.comments.count, 'comment' %> -
+        <strong>Status: </strong><%= post.status.titlecase %>
+      </i>
+  </div>
 
-<div class="item">
-    <p>
-      <h4>Content:</h4>
-        <div class="well">
-            <%= post.content %>
-        </div>
-    </p>
+  <div class="item">
+      <p>
+        <h4>Content:</h4>
+          <div class="well">
+              <%= post.content %>
+          </div>
+      </p>
+  </div>
+  <% if show %>
+    <div class="item">
+      <p class="link-btn">
+        <%= link_to "Show this post", post, { :show => false } %>
+      </p>
+    </div>
+  <% end %>
 </div>
