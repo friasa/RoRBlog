@@ -8,8 +8,14 @@
   <%= link_to "+ Create new post", new_post_path%>
 </p>
 
-<%= render "posts/posts", { posts: @posts } %>
+<%#= render "posts/posts", { posts: @posts } %>
+
+<%= javascript_tag do %>
+  var posts = <%= raw(@posts.to_json) %>
+<% end %>
 
 <p class="link-btn">
   <%= link_to "+ Create new post", new_post_path%>
 </p>
+
+<!--<div id="root"></div>-->
