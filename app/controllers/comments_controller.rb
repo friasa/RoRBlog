@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_post
 
+  # GET /posts/:id/comments or /posts/:id/comments.json
+  def index
+    @comments = @post.comments
+  end
+
   def create
     @comment = @post.comments.create! params.required(:comment).permit(:commenter, :content)
     CommentsMailer.submitted(@comment).deliver_later
