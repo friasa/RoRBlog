@@ -3,44 +3,72 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000";
 
-function getPost(post) {
-    return axios.get(API_URL + '/post/' + post.id + '.json').then((response) => response.data);
-}
+class Posts extends React.Component {
 
-function getComments(post) {
-    return axios.get(API_URL + '/post/' + post.id + '/comments.json').then((response) => response.data);
-}
+    async getPost(post) {
+        return await axios
+            .get(API_URL + '/post' + post + '.json')
+            .then((response) => response.data)
+            .catch(function(error) {
+                    console.log(error);
+                }
+            );
+    }
 
-function Post(props) {
-    const [post, setPost] = useState([]);
+    async getComments(post) {
+        return await axios
+            .get(API_URL + '/post' + post + '/comments.json')
+            .then((response) => response.data)
+            .catch(function(error) {
+                    console.log(error);
+                }
+            );
+    }
 
-    useEffect(() => {
-        let mounted = true;
-        getPost(props.post).then((items) => {
-            if (mounted) {
-                setPost(items);
-            }
-        })
-        return () => (mounted = false);
-    }, []);
+    constructor(props) {
+        super(props);
+        this.state = {
+            post: {},
+            comments: []
+        };
+    }
 
-    return (
-        <div>
-            {post.map((post) => {
+    componentDidMount() {
+        if (this.state.posts.length === 0) {
+            this.getPosts(this.props).then(response => {
+                this.setState({
+                    post: response
+                });
+            });
+        }
+
+        if (this.state.comments.length === 0) {
+            this.getComments(this.props).then(response => {
+                this.setState({
+                    comments: response
+                });
+            });
+        }
+    }
+
+    render() {
+        return (
+            <div>
                 return (
-                    <div key={post.id}>
-                        <h2>{post.title}</h2>
-                        <div key={post.content.id}>
-                            <p>{post.content.body}</p>
-                            <p>{post.content.created_at}</p>
+                    <div key={this.state.post.id}>
+                        <h2>{this.state.post.title}</h2>
+                        <div key={this.state.post.content.id}>
+                            <p>{this.state.post.content.body}</p>
+                            <p>{this.state.post.content.created_at}</p>
                         </div>
-                        <p>{post.status}</p>
+                        <p>{this.state.post.status}</p>
                     </div>
-                );
-            })}
-        </div>
-    )
+                    );
+                })}
+            </div>
+        )
+    }
 }
 
-export default Post;
+export default Posts;
 
